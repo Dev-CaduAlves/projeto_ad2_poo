@@ -14,10 +14,12 @@ public class ProjetoAd2POO {
         System.out.println("Seja bem-vindo(a)!");
         System.out.print("Quantas unidades serão cadastradas? ");
         int totUnidades = sc.nextInt();
+        sc.nextLine();
         ArrayList<BufferedReader> listaCardapio = new ArrayList<BufferedReader>();
-        for(int i = 1; i <= totUnidades; i++){
+        for(int i =3; i<=totUnidades; i++){
+            String unidade = "";
             System.out.print("Arquivo da Unidade " + i + ": ");
-            String unidade = sc.nextLine();
+            unidade += sc.next();
             try{
                 FileReader f = new FileReader(unidade);
                 BufferedReader arq = new BufferedReader(f);
