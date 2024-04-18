@@ -5,18 +5,23 @@ import java.util.ArrayList;
 
 public class Cardapio {
     private String unidade;
-    private ArrayList<Prato> cardapioUnidade;
+    private int totalPratos;
+    private ArrayList<Prato> Pratos;
     
-    public Cardapio(){}
+    public Cardapio(){
+        this.totalPratos = 0;
+        Pratos = new ArrayList<>();
+    }
     
     public void addCardapio(Prato prato){
-        this.cardapioUnidade.add(prato);
+        this.Pratos.add(prato);
+        this.totalPratos++;
     }
     
     public String infoCardapio(){
-        String info = null;
-        for(Prato prato: cardapioUnidade){
-            info += prato.toString();
+        String info = "";
+        for(Prato prato: Pratos){
+            info += prato.toString() + "\n";
         }
         return info;
     }
@@ -26,5 +31,18 @@ public class Cardapio {
     }
     
     public String getUnidade() {return this.unidade;}
-    
+  
+    public String infoCardapio(String categoria){
+        int quantidade = 0;
+        float preco = 0f;
+        for(Prato prato: Pratos){
+            String pratoCat = prato.getCategoria();
+            if(pratoCat.equals(categoria)){
+                quantidade++;
+                preco += prato.getPreco();
+            }
+        }
+        String info = this.unidade + ": Quantidade = " + quantidade + ", Preço = R$ " +  String.format("%s.2f",preco);
+        return info;
+    }
 } 

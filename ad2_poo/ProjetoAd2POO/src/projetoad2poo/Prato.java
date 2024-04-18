@@ -7,16 +7,16 @@ public class Prato {
     private float preco;
     private String categoria;
     
-    public Prato (String nome, String preco, String categoria){
+        public Prato (String nome, String preco, String categoria){
         this.nome = nome;
         this.preco = Float.parseFloat(preco);
-        this.categoria = categoria;
+        this.categoria = categoria.toLowerCase();
         
     }
     
-    public String getNome(){return nome;}
-    public float getPreco(){return preco;}
-    public String getCategoria(){return categoria;}
+    public String getNome(){return this.nome;}
+    public float getPreco(){return this.preco;}
+    public String getCategoria(){return this.categoria;}
     
     public void setNome(String nome){this.nome = nome;}
     public void setPreco(float preco){this.preco = preco;}
