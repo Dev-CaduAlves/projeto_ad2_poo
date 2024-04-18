@@ -4,7 +4,8 @@ package projetoad2poo;
 import java.util.ArrayList;
 
 public class Cardapio {
-    ArrayList<Prato> cardapioUnidade;
+    private String unidade;
+    private ArrayList<Prato> cardapioUnidade;
     
     public Cardapio(){}
     
@@ -19,5 +20,11 @@ public class Cardapio {
         }
         return info;
     }
+    
+    public void setUnidade(String unidade){
+        this.unidade = unidade;
+    }
+    
+    public String getUnidade() {return this.unidade;}
     
 } 

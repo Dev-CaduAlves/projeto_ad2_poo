@@ -7,7 +7,10 @@ public class Prato {
     private float preco;
     private String categoria;
     
-    public Prato (){
+    public Prato (String nome, String preco, String categoria){
+        this.nome = nome;
+        this.preco = Float.parseFloat(preco);
+        this.categoria = categoria;
         
     }
     

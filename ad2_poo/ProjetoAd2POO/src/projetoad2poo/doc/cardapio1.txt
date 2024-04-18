@@ -1,5 +1,5 @@
-Unidade Niter√≥i
-Risoto de Camar√£o; 35.0; Prato Principal
+Unidade NiterÛi
+Risoto de Camar„o; 35.0; Prato Principal
 Tiramisu; 12.0; Sobremesa
-Hamb√∫rguer; 40.9; Prato Principal
-P√£o Brioche; 9.0; Entrada
+Hamburguer; 40.9; Prato Principal
+P„o Brioche; 9.0; Entrada
