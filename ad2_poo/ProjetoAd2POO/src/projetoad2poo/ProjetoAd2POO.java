@@ -15,7 +15,7 @@ public class ProjetoAd2POO {
    
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Cardapio> cardapios = new ArrayList<Cardapio>();
+        ArrayList<Cardapio> cardapios = new ArrayList<Cardapio>(); //Lista que receberá as instâncias da classe Cardápio
         Locale locale = new Locale("pt", "BR");
         NumberFormat formato = NumberFormat.getCurrencyInstance(locale);
         
@@ -23,13 +23,14 @@ public class ProjetoAd2POO {
         System.out.print("Quantas unidades serão cadastradas? ");
         int totUnidades = sc.nextInt(); //Recebe a entrada de quantidade de Cardápios
         sc.nextLine(); //Faz o debuffer do Scanner
-        ArrayList<BufferedReader> listaCardapio = new ArrayList<BufferedReader>();
-        for(int i=1; i<=totUnidades; i++){
+
+        for(int i=1; i<=totUnidades; i++){ //Realiza a leitura para cada cardapio fornecido
             String unidade = "";
             System.out.print("Arquivo da Unidade " + i + ": ");
             unidade += sc.next();
             String path = System.getProperty("user.dir");
             path += "\\src\\projetoad2poo\\doc\\" + unidade;
+            //Bloco que tenta realizar a leitura dos arquivos TXT
             try{
                 File file = new File(path);
                 FileReader fileReader = new FileReader(file);
@@ -37,7 +38,6 @@ public class ProjetoAd2POO {
                 
                 Cardapio c = new Cardapio();
                 String texto = arq.readLine();
-                
                 //Realiza a leitura do nome da Unidade
                 //(primeira linha do arquivo de texto
                 if (texto != null){
@@ -45,10 +45,12 @@ public class ProjetoAd2POO {
                 }
                 texto = arq.readLine();
                 
-                //Adiciona os pratos ao cardápio
-                while(texto != null){
+                //Faz um loop enquanto houver linha escrita no arquivo TXT e realiza a 
+                //instanciação da classe Prato diretamente na lista de pratos da Classe Cardapio
+                while(texto != null){ 
                     String[] textoSplited = texto.split(";");
-                    c.addCardapio(new Prato(textoSplited[0].strip(),textoSplited[1].strip(), textoSplited[2].strip()));
+                    c.addCardapio(new Prato(textoSplited[0].strip()
+                            ,textoSplited[1].strip(), textoSplited[2].strip()));
                     texto = arq.readLine();
                 }
                 cardapios.add(c);
