@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class ProjetoAd2POO {
 
@@ -14,6 +16,9 @@ public class ProjetoAd2POO {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Scanner sc = new Scanner(System.in);
         ArrayList<Cardapio> cardapios = new ArrayList<Cardapio>();
+        Locale locale = new Locale("pt", "BR");
+        NumberFormat formato = NumberFormat.getCurrencyInstance(locale);
+        
         System.out.println("Seja bem-vindo(a)!");
         System.out.print("Quantas unidades serão cadastradas? ");
         int totUnidades = sc.nextInt(); //Recebe a entrada de quantidade de Cardápios
@@ -43,34 +48,49 @@ public class ProjetoAd2POO {
                 //Adiciona os pratos ao cardápio
                 while(texto != null){
                     String[] textoSplited = texto.split(";");
-                    c.addCardapio(new Prato(textoSplited[0],textoSplited[1], textoSplited[2]));
+                    c.addCardapio(new Prato(textoSplited[0].strip(),textoSplited[1].strip(), textoSplited[2].strip()));
                     texto = arq.readLine();
                 }
                 cardapios.add(c);
                 }catch(FileNotFoundException e){
                 System.err.println("Erro na abertura do arquivo: " + e.getMessage());
+                System.exit(0);
             }
         }
         String opcao = "";
+        sc.nextLine();
         while(!"0".equals(opcao)){
-            sc.nextLine();
             System.out.print("Escolha uma categoria, ou digite “0” para encerrar: ");
             opcao = sc.nextLine().toLowerCase();
             switch (opcao){
-                case "prato principal" -> {
+                case "prato principal" : case "sobremesa" : case "entrada": {
+                    String categoria = opcao;
                     int quantidadePratos = 0;
+                    float precoPratos = 0f;
                     for(Cardapio cardapio: cardapios){
-                        System.out.println(cardapio.infoCardapio(opcao));
-      
+                        quantidadePratos += cardapio.infoQuantidadePorCategoria(categoria);
+                        precoPratos += cardapio.infoPrecoPorCategoria(categoria);
+                        System.out.println(cardapio.infoCardapioGeral(categoria));
+                    }
+                    System.out.println("Total: Quantidade = " + quantidadePratos + ", Preço = " + formato.format(precoPratos));
+                    System.out.println("");
+                    System.out.print("Exibir Detalhes (“s” ou “n”)? ");
+                    switch (opcao = sc.nextLine()) {
+                        case "s" -> {
+                            for(Cardapio cardapio: cardapios){
+                                System.out.println(cardapio.getUnidade() + ":");
+                                System.out.println(cardapio.infoCardapioDetalhe(categoria));
+                            }
+                        }
+                        case "n" -> {
+                            break;
+                        }
+                        default -> {
+                            System.err.println("Entrada Inválida");
+                        }    
                     }
                 }
-                            
-                    }
-                }
-                
-            
-            
-        
+            }    
+        }
     }
-    
 }

@@ -1,7 +1,6 @@
 
 package projetoad2poo;
 
-
 public class Prato {
     private String nome;
     private float preco;
