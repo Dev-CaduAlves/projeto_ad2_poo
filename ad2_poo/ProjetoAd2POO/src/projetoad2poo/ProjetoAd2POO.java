@@ -1,3 +1,13 @@
+/*
+Criado por Carlos Eduardo Alves de Oliveira
+Solução do exercício da AD2 de Programação Orientada a Objeto do curso de
+Tecnologia de Sistema de Computação da UFF.
+*/
+
+/*
+Observação: O código-fonte foi criado partindo da premissa de que os arquivos
+*.txt dos cardápios estarão na pasta *\doc\.
+*/
 
 package projetoad2poo;
 import java.io.FileReader;
